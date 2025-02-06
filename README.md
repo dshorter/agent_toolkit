@@ -38,19 +38,18 @@ graph TD
    AS --> AM[Agent Memory]
    AS --> TS[Tool Service]
 
-   %% Style classes 
-   classDef default fill:#2B3D53,stroke:#000000,stroke-width:2px,color:#FFFFFF;
-   classDef client fill:#ff99cc,stroke:#000000,stroke-width:2px,color:#000000;
-   classDef service fill:#9911ff,stroke:#000000,stroke-width:2px,color:#000000;
-   classDef storage fill:#99ff99,stroke:#000000,stroke-width:2px,color:#000000;
-   classDef text color:#FFFFFF;      
+   %% Style classes with muted, professional colors
+   classDef client fill:#E6B9B8,stroke:#000000,stroke-width:2px,color:#2F4538;
+   classDef service fill:#B3CDE3,stroke:#000000,stroke-width:2px,color:#2F4538;
+   classDef storage fill:#BFD8BE,stroke:#000000,stroke-width:2px,color:#2F4538;
    
-  %% Apply styles
- class CA client;
- class API,AS,TM,TS service;
- class AM storage
- class CA,API,AS,TM,AM,TS text;;
-```
+   %% Apply styles
+   class CA client;
+   class API,AS,TM,TS service;
+   class AM storage;
+
+   %% Link styling
+   linkStyle default stroke:#2F4538,stroke-width:2px;```
 
 ## Development
 
