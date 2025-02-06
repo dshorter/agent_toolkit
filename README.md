@@ -47,7 +47,8 @@ graph TD
    %% Apply styles
    class CA client;
    class API,AS,TM,TS service;
-   class AM storage;```
+   class AM storage;
+```
 ```mermaid
 graph TD
     CA[Client Apps] --> API[API Gateway]
