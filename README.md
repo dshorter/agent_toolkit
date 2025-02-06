@@ -46,10 +46,10 @@ graph TD
    classDef text color:#228B22;  
    
   %% Apply styles
- class CA,API,AS,TM,AM,TS text;
  class CA client;
  class API,AS,TM,TS service;
- class AM storage;
+ class AM storage
+ class CA,API,AS,TM,AM,TS text;;
 ```
 
 ## Development
