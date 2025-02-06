@@ -49,14 +49,6 @@ graph TD
    class API,AS,TM,TS service;
    class AM storage;
 ```
-```mermaid
-graph TD
-    CA[Client Apps] --> API[API Gateway]
-    API --> AS[Agent Service]
-    AS --> TM[Task Manager]
-    AS --> AM[Agent Memory]
-    AS --> TS[Tool Service]
-```
 
 ## Development
 
