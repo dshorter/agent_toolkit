@@ -49,7 +49,8 @@ graph TD
    class AM storage;
 
    %% Link styling
-   linkStyle default stroke:#2F4538,stroke-width:2px;```
+   linkStyle default stroke:#2F4538,stroke-width:2px;
+```
 
 ## Development
 
