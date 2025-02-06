@@ -49,7 +49,7 @@ graph TD
  class CA,API,AS,TM,AM,TS text;
  class CA client;
  class API,AS,TM,TS service;
- class AM stora ge;
+ class AM storage;
 ```
 
 ## Development
