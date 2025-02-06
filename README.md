@@ -3,11 +3,6 @@
 A flexible AI agent architecture supporting tool integration, sequence tracking, and business intelligence analysis.
 
 ## Quick Start
-
-```bash
-# Clone repository
-git clone [repository-url]
-
 # Setup environment
 python setup.py
 
@@ -32,24 +27,25 @@ cp .env.example .env
 
 ```mermaid
 graph TD
-   CA[Client Apps] --> API[API Gateway]
-   API --> AS[Agent Service]
-   AS --> TM[Task Manager]
-   AS --> AM[Agent Memory]
-   AS --> TS[Tool Service]
+    CA[Client Apps] --> API[API Gateway]
+    API --> AS[Agent Service]
+    AS --> TM[Task Manager]
+    AS --> AM[Agent Memory]
+    AS --> TS[Tool Service]
 
-   %% Style classes with muted, professional colors
-   classDef client fill:#E6B9B8,stroke:#000000,stroke-width:2px,color:#2F4538;
-   classDef service fill:#B3CDE3,stroke:#000000,stroke-width:2px,color:#2F4538;
-   classDef storage fill:#BFD8BE,stroke:#000000,stroke-width:2px,color:#2F4538;
-   
-   %% Apply styles
-   class CA client;
-   class API,AS,TM,TS service;
-   class AM storage;
+    %% Style classes 
+    classDef client fill:#E6B9B8,stroke:#000000,stroke-width:2px;
+    classDef service fill:#B3CDE3,stroke:#000000,stroke-width:2px;
+    classDef storage fill:#BFD8BE,stroke:#000000,stroke-width:2px;
+    classDef text color:#000000;
+    
+    %% Apply styles
+    class CA client,text;
+    class API,AS,TM,TS service,text;
+    class AM storage,text;
 
-   %% Link styling
-   linkStyle default stroke:#2F4538,stroke-width:2px;
+    %% Link styling
+    linkStyle default stroke:#000000,stroke-width:2px;
 ```
 
 ## Development
