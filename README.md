@@ -41,7 +41,7 @@ graph TD
    %% Style classes 
    classDef default fill:#2B3D53,stroke:#000000,stroke-width:2px,color:#FFFFFF;
    classDef client fill:#ff99cc,stroke:#000000,stroke-width:2px,color:#000000;
-   classDef service fill:#9999ff,stroke:#000000,stroke-width:2px,color:#000000;
+   classDef service fill:#9911ff,stroke:#000000,stroke-width:2px,color:#000000;
    classDef storage fill:#99ff99,stroke:#000000,stroke-width:2px,color:#000000;
    classDef text color:#FFFFFF;      
    
