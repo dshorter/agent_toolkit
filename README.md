@@ -32,15 +32,22 @@ cp .env.example .env
 
 ```mermaid
 graph TD
-    CA[Client Apps] --> API[API Gateway]
-    API --> AS[Agent Service]
-    AS --> TM[Task Manager]
-    AS --> AM[Agent Memory]
-    AS --> TS[Tool Service]
+   CA[Client Apps] --> API[API Gateway]
+   API --> AS[Agent Service]
+   AS --> TM[Task Manager]
+   AS --> AM[Agent Memory]
+   AS --> TS[Tool Service]
 
-    classDef default fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#333;
-    classDef primary fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#01579b;
-```
+   %% Style classes 
+   classDef default fill:#2B3D53,stroke:#000000,stroke-width:2px,color:#FFFFFF;
+   classDef client fill:#ff99cc,stroke:#000000,stroke-width:2px,color:#000000;
+   classDef service fill:#9999ff,stroke:#000000,stroke-width:2px,color:#000000;
+   classDef storage fill:#99ff99,stroke:#000000,stroke-width:2px,color:#000000;
+   
+   %% Apply styles
+   class CA client;
+   class API,AS,TM,TS service;
+   class AM storage;```
 ```mermaid
 graph TD
     CA[Client Apps] --> API[API Gateway]
