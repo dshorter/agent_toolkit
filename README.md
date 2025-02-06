@@ -43,7 +43,7 @@ graph TD
    classDef client fill:#ff99cc,stroke:#000000,stroke-width:2px,color:#000000;
    classDef service fill:#9999ff,stroke:#000000,stroke-width:2px,color:#000000;
    classDef storage fill:#99ff99,stroke:#000000,stroke-width:2px,color:#000000;
-   classDef text color:#0000FF;      
+   classDef text color:#FFFFFF;      
    
   %% Apply styles
  class CA client;
