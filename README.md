@@ -37,6 +37,17 @@ graph TD
     AS --> TM[Task Manager]
     AS --> AM[Agent Memory]
     AS --> TS[Tool Service]
+
+    classDef default fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#333;
+    classDef primary fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#01579b;
+```
+```mermaid
+graph TD
+    CA[Client Apps] --> API[API Gateway]
+    API --> AS[Agent Service]
+    AS --> TM[Task Manager]
+    AS --> AM[Agent Memory]
+    AS --> TS[Tool Service]
 ```
 
 ## Development
