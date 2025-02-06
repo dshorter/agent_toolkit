@@ -1,6 +1,6 @@
 # AI Agent System
 
-A flexible AI agent architecture supporting tool integration, sequence tracking, and business intelligence analysis.
+A flexible AI agent architecture supporting tool integration, sequence tracking, and business intelligence analysis. 
 
 ## Quick Start
 # Setup environment
@@ -11,6 +11,7 @@ source venv/bin/activate  # Unix
 .\venv\Scripts\activate   # Windows
 
 # Configure environment
+```
 cp .env.example .env
 # Edit .env with your settings
 ```
