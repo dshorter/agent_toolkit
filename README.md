@@ -43,7 +43,7 @@ graph TD
    classDef client fill:#ff99cc,stroke:#000000,stroke-width:2px,color:#000000;
    classDef service fill:#9999ff,stroke:#000000,stroke-width:2px,color:#000000;
    classDef storage fill:#99ff99,stroke:#000000,stroke-width:2px,color:#000000;
-   classDef text color:#228B22;  %% Forest Green hex code
+   classDef text color:#228B22;  
    
   %% Apply styles
  class CA,API,AS,TM,AM,TS text;
