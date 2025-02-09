@@ -1,4 +1,5 @@
-venv/
+venv/  
+project_knowledge/
 __pycache__/
 *.py[cod]
 .env

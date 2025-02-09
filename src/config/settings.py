@@ -1,7 +1,7 @@
 # src/config/settings.py
 from typing import Dict, Any, Optional
 from pydantic_settings import BaseSettings
-from pydantic import Field, validator  
+from pydantic import Field, validator, field_validator    
 import os
 from functools import lru_cache
 
@@ -37,7 +37,7 @@ class DatabaseSettings(BaseSettings):
         description="Redis operation timeout in seconds"
     )
 
-    @validator("MONGODB_URL")
+    @field_validator("MONGODB_URL")
     def validate_mongodb_url(cls, v: str) -> str:
         if not v.startswith(("mongodb://", "mongodb+srv://")):
             raise ValueError("MongoDB URL must start with mongodb:// or mongodb+srv://")
@@ -62,7 +62,7 @@ class AgentSettings(BaseSettings):
         description="Maximum number of tasks an agent can process concurrently"
     )
     
-    @validator("AGENT_DEFAULT_TIMEOUT")
+    @field_validator("AGENT_DEFAULT_TIMEOUT")
     def validate_timeout(cls, v: int) -> int:
         if v < 1 or v > 3600:
             raise ValueError("Agent timeout must be between 1 and 3600 seconds")
@@ -87,7 +87,7 @@ class LLMSettings(BaseSettings):
         description="Maximum context window size in tokens"
     )
     
-    @validator("LLM_TEMPERATURE")
+    @field_validator("LLM_TEMPERATURE")
     def validate_temperature(cls, v: float) -> float:
         if v < 0.0 or v > 2.0:
             raise ValueError("Temperature must be between 0.0 and 2.0")
@@ -112,7 +112,7 @@ class LoggingSettings(BaseSettings):
         description="Port to expose metrics on"
     )
     
-    @validator("LOG_LEVEL")
+    @field_validator("LOG_LEVEL")
     def validate_log_level(cls, v: str) -> str:
         valid_levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
         if v.upper() not in valid_levels:

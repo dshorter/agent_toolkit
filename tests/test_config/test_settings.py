@@ -1,6 +1,6 @@
 # tests/test_config/test_settings.py
 import pytest
-from pydantic import ValidationError
+from pydantic import ValidationError  
 import os
 from src.config import get_settings, Settings
 from src.config.settings import (
