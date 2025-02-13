@@ -6,3 +6,10 @@ __pycache__/
 .vscode/
 .idea/
 *.log
+# Test results
+*test-RESULT.TXT
+*test_result.txt
+*-RESULT.TXT
+
+# Test backups
+backup_tests_*

@@ -101,7 +101,8 @@ def collect_files(source_dir: str, target_dir: str, prefix: str = "") -> None:
             rel_parts = rel_path.parts
             if len(rel_parts) > 1:
                 # Use only the immediate parent directory name
-                target_name = f"{rel_parts[-2]}_{file}"
+                target_name = f"{rel_parts[-2]}_{file}" 
+                target_name = file  
             else:
                 target_name = file
                 

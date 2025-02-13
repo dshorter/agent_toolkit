@@ -1,5 +1,6 @@
 README.md
 pyproject.toml
+src/__init__.py
 src/agent/__init__.py
 src/agent/planning.py
 src/agent/reasoning.py
@@ -14,6 +15,7 @@ src/api/middleware/rate_limit.py
 src/config/__init__.py
 src/config/settings.py
 src/core/__init__.py
+src/core/logging.py
 src/tools/__init__.py
 src/tools/providers/__init__.py
 src/utils/__init__.py
