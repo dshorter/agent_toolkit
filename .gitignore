@@ -1,7 +1,15 @@
-venv/
+venv/  
+project_knowledge/
 __pycache__/
 *.py[cod]
 .env
 .vscode/
 .idea/
 *.log
+# Test results
+*test-RESULT.TXT
+*test_result.txt
+*-RESULT.TXT
+
+# Test backups
+backup_tests_*

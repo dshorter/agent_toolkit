@@ -1,7 +1,7 @@
 # src/config/settings.py
 from typing import Dict, Any, Optional
-from pydantic_settings import BaseSettings
-from pydantic import Field, validator  
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field, field_validator
 import os
 from functools import lru_cache
 
@@ -37,11 +37,16 @@ class DatabaseSettings(BaseSettings):
         description="Redis operation timeout in seconds"
     )
 
-    @validator("MONGODB_URL")
+    @field_validator("MONGODB_URL")
     def validate_mongodb_url(cls, v: str) -> str:
         if not v.startswith(("mongodb://", "mongodb+srv://")):
             raise ValueError("MongoDB URL must start with mongodb:// or mongodb+srv://")
         return v
+
+    model_config = SettingsConfigDict(
+        extra="allow",
+        env_nested_delimiter="__"
+    )
 
 class AgentSettings(BaseSettings):
     """Agent-specific configuration settings."""
@@ -62,11 +67,16 @@ class AgentSettings(BaseSettings):
         description="Maximum number of tasks an agent can process concurrently"
     )
     
-    @validator("AGENT_DEFAULT_TIMEOUT")
+    @field_validator("AGENT_DEFAULT_TIMEOUT")
     def validate_timeout(cls, v: int) -> int:
         if v < 1 or v > 3600:
             raise ValueError("Agent timeout must be between 1 and 3600 seconds")
         return v
+
+    model_config = SettingsConfigDict(
+        extra="allow",
+        env_nested_delimiter="__"
+    )
 
 class LLMSettings(BaseSettings):
     """Language Model configuration settings."""
@@ -87,11 +97,16 @@ class LLMSettings(BaseSettings):
         description="Maximum context window size in tokens"
     )
     
-    @validator("LLM_TEMPERATURE")
+    @field_validator("LLM_TEMPERATURE")
     def validate_temperature(cls, v: float) -> float:
         if v < 0.0 or v > 2.0:
             raise ValueError("Temperature must be between 0.0 and 2.0")
         return v
+
+    model_config = SettingsConfigDict(
+        extra="allow",
+        env_nested_delimiter="__"
+    )
 
 class LoggingSettings(BaseSettings):
     """Logging and monitoring configuration."""
@@ -112,12 +127,45 @@ class LoggingSettings(BaseSettings):
         description="Port to expose metrics on"
     )
     
-    @validator("LOG_LEVEL")
+    @field_validator("LOG_LEVEL")
     def validate_log_level(cls, v: str) -> str:
         valid_levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
         if v.upper() not in valid_levels:
             raise ValueError(f"Log level must be one of {valid_levels}")
         return v.upper()
+
+    model_config = SettingsConfigDict(
+        extra="allow",
+        env_nested_delimiter="__"
+    )
+
+class MiddlewareSettings(BaseSettings):
+    """Configuration settings for API middleware components."""
+    RATE_LIMIT_WINDOW_SECONDS: int = Field(
+        default=60,
+        description="Duration of the rate limiting window in seconds"
+    )
+    RATE_LIMIT_MAX_REQUESTS: int = Field(
+        default=100,
+        description="Maximum number of requests allowed within the window"
+    )
+    
+    @field_validator("RATE_LIMIT_WINDOW_SECONDS")
+    def validate_window_seconds(cls, v: int) -> int:
+        if v < 1 or v > 3600:
+            raise ValueError("Rate limit window must be between 1 and 3600 seconds")
+        return v
+    
+    @field_validator("RATE_LIMIT_MAX_REQUESTS")
+    def validate_max_requests(cls, v: int) -> int:
+        if v < 1 or v > 1000:
+            raise ValueError("Maximum requests must be between 1 and 1000 per window")
+        return v
+
+    model_config = SettingsConfigDict(
+        extra="allow",
+        env_nested_delimiter="__"
+    )
 
 class Settings(BaseSettings):
     """Main configuration class combining all setting categories."""
@@ -134,18 +182,20 @@ class Settings(BaseSettings):
         description="Deployment environment"
     )
     
-    # Nested settings using Field with default_factory
+    # Include all setting categories
     db: DatabaseSettings = Field(default_factory=DatabaseSettings)
     agent: AgentSettings = Field(default_factory=AgentSettings)
     llm: LLMSettings = Field(default_factory=LLMSettings)
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
-    
-    model_config = {
-        "env_file": ".env",
-        "case_sensitive": True,
-        "env_nested_delimiter": "__",
-        "extra": "allow"  # Add this line
-    }
+    middleware: MiddlewareSettings = Field(default_factory=MiddlewareSettings)
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_nested_delimiter="__",
+        extra="allow",
+        validate_assignment=True,
+        case_sensitive=True
+    )
 
     def get_all_settings(self) -> Dict[str, Any]:
         """Returns all settings as a dictionary for logging/debugging"""
@@ -158,11 +208,11 @@ class Settings(BaseSettings):
             "database": self.db.model_dump(),
             "agent": self.agent.model_dump(),
             "llm": self.llm.model_dump(),
-            "logging": self.logging.model_dump()
+            "logging": self.logging.model_dump(),
+            "middleware": self.middleware.model_dump()
         }
 
 @lru_cache()
 def get_settings() -> Settings:
     """Creates and returns a cached instance of settings."""
     return Settings()
-
